@@ -8,7 +8,7 @@ It has its own integrated CLI tool  as well
 
 **PLotting Graphs**:
 
-It can show bar , pie and many more kinds of graphs according to the user
+It can show bar ,  pie and many more kinds of graphs according to the user
 
 ## INSTALLATION 
 * pip install UltraQuery 

@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.venv/
+*.png
+*.jpeg
+*.jpg
+data*.csv
+fire_*.csv
+demo_*.png
+dashboard.png

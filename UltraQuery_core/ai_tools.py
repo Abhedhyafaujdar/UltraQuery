@@ -95,6 +95,8 @@ class WebCmdClient:
                 check=False,
                 capture_output=True,
                 text=True,
+                encoding="utf-8",
+                errors="replace",
                 timeout=self.timeout,
             )
         except FileNotFoundError as exc:
@@ -107,7 +109,7 @@ class WebCmdClient:
         if result.returncode != 0:
             message = result.stderr.strip() or "WebCmd returned a non-zero exit code."
             raise WebCmdError(message)
-        output = result.stdout.strip()
+        output = (result.stdout or "").strip()
         if not output:
             raise WebCmdError("WebCmd returned no output.")
         try:
@@ -136,6 +138,8 @@ class WebCmdClient:
                 check=False,
                 capture_output=True,
                 text=True,
+                encoding="utf-8",
+                errors="replace",
                 timeout=self.timeout,
             )
         except FileNotFoundError as exc:
@@ -146,7 +150,7 @@ class WebCmdClient:
             message = result.stderr.strip() or "WebCmd URL fetch failed."
             raise WebCmdError(message)
         try:
-            data = json.loads(result.stdout)
+            data = json.loads(result.stdout or "")
         except json.JSONDecodeError as exc:
             raise WebCmdError("WebCmd URL fetch returned invalid JSON.") from exc
         return {
